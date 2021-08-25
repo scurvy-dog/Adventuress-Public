@@ -1,0 +1,253 @@
+[
+    {
+        "id": "fea9a60d.f43868",
+        "type": "tab",
+        "label": "Main Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "23caf401.9d6d4c",
+        "type": "ui_button",
+        "z": "fea9a60d.f43868",
+        "name": "Weather",
+        "group": "ca2272c3.e8396",
+        "order": 28,
+        "width": 6,
+        "height": 4,
+        "passthru": false,
+        "label": "<font size=6>Weather</font>",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "wi-darksky-partly-cloudy-day wi-2x",
+        "payload": "WEATHER",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 100,
+        "y": 280,
+        "wires": [
+            [
+                "ece06122.7e762"
+            ]
+        ]
+    },
+    {
+        "id": "ece06122.7e762",
+        "type": "trigger",
+        "z": "fea9a60d.f43868",
+        "name": "reset msg",
+        "op1": "",
+        "op2": "empty",
+        "op1type": "pay",
+        "op2type": "str",
+        "duration": "250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "5e1f0081.6dc3c"
+            ]
+        ]
+    },
+    {
+        "id": "8582289.2d757d8",
+        "type": "debug",
+        "z": "fea9a60d.f43868",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "4adb81f8.e4e61",
+        "type": "ui_button",
+        "z": "fea9a60d.f43868",
+        "name": "Engine",
+        "group": "ca2272c3.e8396",
+        "order": 5,
+        "width": 6,
+        "height": 4,
+        "passthru": false,
+        "label": "<font size=6>Engine</font>",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-ship fa-2x",
+        "payload": "ENGINE",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "ece06122.7e762"
+            ]
+        ]
+    },
+    {
+        "id": "c6ade4ff.28a708",
+        "type": "ui_button",
+        "z": "fea9a60d.f43868",
+        "name": "Navigation",
+        "group": "ca2272c3.e8396",
+        "order": 7,
+        "width": 6,
+        "height": 4,
+        "passthru": false,
+        "label": "<font size=6>Navigation</font>",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-map fa-2x",
+        "payload": "NAVIGATION",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "ece06122.7e762"
+            ]
+        ]
+    },
+    {
+        "id": "355134e4.84fabc",
+        "type": "ui_button",
+        "z": "fea9a60d.f43868",
+        "name": "Victron",
+        "group": "ca2272c3.e8396",
+        "order": 26,
+        "width": 6,
+        "height": 4,
+        "passthru": false,
+        "label": "<font size=6>Victron</font>",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-bolt fa-2x",
+        "payload": "VICTRON",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "ece06122.7e762"
+            ]
+        ]
+    },
+    {
+        "id": "a413c9b1.96faa8",
+        "type": "ui_button",
+        "z": "fea9a60d.f43868",
+        "name": "Anchoring",
+        "group": "ca2272c3.e8396",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "passthru": false,
+        "label": "<font size=6>Anchoring</font>",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "fa-anchor fa-2x",
+        "payload": "ANCHORING",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 100,
+        "y": 120,
+        "wires": [
+            [
+                "ece06122.7e762"
+            ]
+        ]
+    },
+    {
+        "id": "5e1f0081.6dc3c",
+        "type": "ui_template",
+        "z": "fea9a60d.f43868",
+        "group": "ca2272c3.e8396",
+        "name": "window redirect",
+        "order": 44,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\n(function(scope) {\n    scope.$watch('msg.payload', function(data) {\n        if (data == \"ANCHORING\") {\n          //window.open Grafana anchoring dashboard;\n          window.location.href = \"http://192.168.1.115:4000/d/8NeYCcGnz/anchored?orgId=1&refresh=10s&theme=dark&kiosk\";\n        } \n        if (data == \"ENGINE\") {\n          //window.open Grafana engine monitoring dashboard;\n          window.location.href = \"http://192.168.1.115:4000/d/RQ65Y9jMz/engine?orgId=1&refresh=10s&theme=light&kiosk\";\n        }\n        if (data == \"NAVIGATION\") {\n          //window.open Grafana navigation  dashboard;\n          window.location.href = \"http://192.168.1.115:4000/d/CZovPAqGk/navigation?orgId=1&refresh=5s&theme=light&kiosk=tv\";\n        }\n         if (data == \"VICTRON\") {\n          //window.open Grafana victron  dashboard;\n          window.location.href = \"http://192.168.1.115:4000/d/uJbuu-EGk/victron?orgId=1&refresh=5s&theme=light&kiosk\";\n        }\n         if (data == \"WEATHER\") {\n          //window.open Grafana weather  dashboard;\n          window.location.href = \"http://192.168.1.115:4000/d/-QL4VTjMz/weather-fire-tablet?orgId=1&refresh=10s&theme=dark&kiosk\";\n        }\n        if (data == \"TEST\") {\n          //window.open Grafana testing  dashboard;\n          window.location.href = \"http://192.168.1.115:4000/d/LJWYSRn7z/boat-metrics?orgId=1&kiosk=tv\";\n        }\n    });\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "x": 480,
+        "y": 200,
+        "wires": [
+            [
+                "8582289.2d757d8"
+            ]
+        ]
+    },
+    {
+        "id": "a75e25ab.1ba7d8",
+        "type": "ui_button",
+        "z": "fea9a60d.f43868",
+        "name": "Test",
+        "group": "ca2272c3.e8396",
+        "order": 24,
+        "width": 6,
+        "height": 4,
+        "passthru": false,
+        "label": "<font size=6>Testing</font>",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "wi-darksky-partly-cloudy-day wi-2x",
+        "payload": "TEST",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "ece06122.7e762"
+            ]
+        ]
+    },
+    {
+        "id": "ca2272c3.e8396",
+        "type": "ui_group",
+        "name": "Grafana",
+        "tab": "d9bf7560.df5e58",
+        "order": 1,
+        "disp": false,
+        "width": 24,
+        "collapse": false
+    },
+    {
+        "id": "d9bf7560.df5e58",
+        "type": "ui_tab",
+        "name": "Adventuress Dashboard",
+        "icon": "dashboard",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    }
+]
