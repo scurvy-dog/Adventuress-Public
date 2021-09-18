@@ -1,0 +1,137 @@
+[
+    {
+        "id": "5af3e0f3.5e187",
+        "type": "tab",
+        "label": "YD Alarm",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "81812f41.3fde9",
+        "type": "switch",
+        "z": "5af3e0f3.5e187",
+        "name": "Action",
+        "property": "action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "ON",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "OFF",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "VOLUME",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "67286a78.fac5d4"
+            ],
+            [
+                "36aaebe.5f11714"
+            ],
+            [
+                "b4305291.abefc"
+            ]
+        ]
+    },
+    {
+        "id": "bfedf040.d0615",
+        "type": "link in",
+        "z": "5af3e0f3.5e187",
+        "name": "V-CONN",
+        "links": [
+            "fe098eb7.c8fb5",
+            "428adb1.b69af24",
+            "95ac6bac.6af9b8",
+            "a4b18cbc.10bed"
+        ],
+        "x": 125,
+        "y": 160,
+        "wires": [
+            [
+                "81812f41.3fde9"
+            ]
+        ]
+    },
+    {
+        "id": "67286a78.fac5d4",
+        "type": "function",
+        "z": "5af3e0f3.5e187",
+        "name": "SOUND ON",
+        "func": "var sound_nmb = msg.payload;\nvar key = \"Switch\"+sound_nmb.toString();\n\nmsg.payload = {\n    \"pgn\": 127502,\n    \"dst\": 67,\n    \"Switch Bank Instance\": 10\n}\nmsg.payload[key] = 1\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 100,
+        "wires": [
+            [
+                "edd75815.b0f748"
+            ]
+        ]
+    },
+    {
+        "id": "edd75815.b0f748",
+        "type": "signalk-send-nmea2000",
+        "z": "5af3e0f3.5e187",
+        "name": "",
+        "nmea2000Event": "nmea2000out",
+        "nmea2000JsonEvent": "nmea2000JsonOut",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "36aaebe.5f11714",
+        "type": "function",
+        "z": "5af3e0f3.5e187",
+        "name": "SOUND OFF",
+        "func": "msg.payload = {\n    \"pgn\": 127502,\n    \"dst\": 67,\n    \"Switch Bank Instance\": 10,\n    \"Switch1\": 0,\n    \"Switch2\": 0,\n    \"Switch3\": 0,\n    \"Switch4\": 0,\n    \"Switch5\": 0,\n    \"Switch6\": 0,\n    \"Switch7\": 0,\n    \"Switch8\": 0,\n    \"Switch9\": 0,\n    \"Switch10\": 0,\n    \"Switch11\": 0,\n    \"Switch12\": 0,\n    \"Switch13\": 0,\n    \"Switch14\": 0,\n    \"Switch15\": 0,\n    \"Switch16\": 0,\n    \"Switch17\": 0,\n    \"Switch18\": 0,\n    \"Switch19\": 0,\n    \"Switch20\": 0,\n    \"Switch21\": 0,\n    \"Switch22\": 0,\n    \"Switch23\": 0,\n    \"Switch24\": 0,\n    \"Switch25\": 0,\n    \"Switch26\": 0,\n    \"Switch27\": 0,\n    \"Switch28\": 0\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 160,
+        "wires": [
+            [
+                "edd75815.b0f748"
+            ]
+        ]
+    },
+    {
+        "id": "b4305291.abefc",
+        "type": "function",
+        "z": "5af3e0f3.5e187",
+        "name": "VOLUME",
+        "func": "var v = msg.payload;\nvar val = v.toString();\n\nmsg.payload = {\n    \"pgn\": 126208,\n    \"PGN\": 126998,\n    \"dst\": 67,\n    \"Function Code\": \"Command\",\n    \"# of Parameters\": 1,\n    \"list\": [\n        {\n            \"Parameter\": 2,\n            \"Value\": \"YD:VOLUME \"+val\n        }\n    ]\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "edd75815.b0f748"
+            ]
+        ]
+    }
+]
