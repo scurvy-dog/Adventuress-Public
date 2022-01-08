@@ -1,0 +1,67 @@
+[
+    {
+        "id": "fef5310d.a8455",
+        "type": "change",
+        "z": "26472670.e6048a",
+        "name": "Transform Payload to Integer",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "normal",
+                "fromt": "str",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "alert",
+                "fromt": "str",
+                "to": "2",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "warn",
+                "fromt": "str",
+                "to": "3",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "alarm",
+                "fromt": "str",
+                "to": "4",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "emergency",
+                "fromt": "str",
+                "to": "5",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "5f03a74c.b170b8"
+            ]
+        ]
+    }
+]
